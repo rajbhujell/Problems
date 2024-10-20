@@ -1,55 +1,51 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
   background-color: var(--background-color);
 }
 
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  color: var(--primary-color); /* Pink color */
-}
-
-.login {
-  font-size: 18px;
-  text-decoration: none;
-  color: var(--text-color); /* Neutral text color */
-}
-
 .main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  text-align: center; /* Center text */
+}
+
+.title {
+  font-size: 2.5rem; /* Adjust as needed */
+  color: var(--text-color);
+  margin-bottom: 20px; /* Space below title */
+}
+
+.description {
+  font-size: 1.25rem; /* Adjust as needed */
+  color: var(--text-color);
+  margin-bottom: 30px; /* Space below description */
 }
 
 .buttonBox {
   display: flex;
-  gap: 40px;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  flex-wrap: wrap; /* Responsive layout */
 }
 
 .button {
-  padding: 15px 40px;
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
   border: 2px solid var(--primary-color);
   border-radius: 25px;
-  font-size: 18px;
+  font-size: 1.2rem; /* Adjust as needed */
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .button:hover {
   background-color: var(--primary-color);
   color: rgb(221, 208, 208);
+}
+
+.icon {
+  margin-right: 10px; /* Space between icon and text */
 }

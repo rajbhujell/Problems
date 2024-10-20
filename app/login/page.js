@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { signIn } from "next-auth/react"; // Import signIn
+import { signIn } from "next-auth/react";
 import styles from "../ui/globalStyles/login.module.css";
 import google from "../components/assets/images/google.png";
 import { useAuth } from "../context/authContext";
