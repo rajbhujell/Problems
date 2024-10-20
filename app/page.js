@@ -2,16 +2,21 @@
 import styles from "./ui/globalStyles/homePage.module.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { FaDollarSign, FaClipboardList } from "react-icons/fa";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 export default function Home() {
   return (
     <>
       {/* <ProtectedRoute> */}
+      <Header />
       <div className={styles.container}>
         {/* Main Section */}
         <main className={styles.main}>
-          <h1 className={styles.title}>Welcome to Support Center</h1>
-          <p className={styles.description}>Choose the support you need:</p>
+          <h1 className={styles.title}>Welcome to the Support Circus! 🎪</h1>
+          <p className={styles.description}>
+            Need a hand? Choose your support flavor below!
+          </p>
           <div className={styles.buttonBox}>
             <a href="/paid-support" className={styles.button}>
               <FaDollarSign className={styles.icon} />
@@ -24,6 +29,7 @@ export default function Home() {
           </div>
         </main>
       </div>
+      <Footer />
       {/* </ProtectedRoute> */}
     </>
   );

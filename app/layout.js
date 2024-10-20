@@ -32,9 +32,9 @@ export default function RootLayout({ children }) {
           {loading && <Loader />}
           {!loading && (
             <>
-              <Header />
+              {/* <Header /> */}
               {children}
-              <Footer />
+              {/* <Footer /> */}
             </>
           )}
         </body>
