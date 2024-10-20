@@ -17,6 +17,12 @@
   }
 }
 
+.gradient-text {
+  background: linear-gradient(to right, #ffffff, #1e3a8a); /* White to Blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

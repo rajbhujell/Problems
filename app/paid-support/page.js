@@ -40,7 +40,7 @@ export default function Paid() {
     <>
       <Header />
       <div className="min-h-screen flex flex-col items-center justify-center bg-background-color p-5 pt-20">
-        <h1 className="text-3xl font-bold text-white mb-8">
+        <h1 className="text-5xl font-semibold text-center gradient-text text-white mb-8">
           Choose Your Support
         </h1>
 
