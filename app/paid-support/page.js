@@ -7,19 +7,53 @@ import Footer from "../components/footer";
 
 export default function Paid() {
   const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
   const [status, setStatus] = useState("");
   const [isSending, setIsSending] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [numberError, setNumberError] = useState("");
 
   const handleTextareaFocus = () => {
     console.log("Textarea focused");
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^98\d{8}$/;
+    const repeatedDigitsRegex = /^(98)(\d)\2{7}$/;
+
+    if (!phoneRegex.test(phoneNumber)) {
+      return "Number must start with 98 and have 10 digits.";
+    }
+    if (repeatedDigitsRegex.test(phoneNumber)) {
+      return "Number can't be repetitive like 9800000000 or 9811111111.";
+    }
+    return "";
+  };
+
   const sendEmail = async (e) => {
     e.preventDefault();
-    setIsSending(true);
 
+    // Validate number
+    const phoneError = validatePhoneNumber(number);
+    if (phoneError) {
+      setNumberError(phoneError);
+      return;
+    }
+
+    setIsSending(true);
     const templateParams = {
       message,
+      name,
+      number,
       to_email: "work.brajbhujel@gmail.com",
     };
 
@@ -33,6 +67,8 @@ export default function Paid() {
       console.log("Email sent successfully:", response);
       setStatus("Your message flew through the internet tubes! 📨");
       setMessage("");
+      setName("");
+      setNumber("");
     } catch (err) {
       console.error("Error sending email:", err);
       setStatus(
@@ -40,6 +76,7 @@ export default function Paid() {
       );
     } finally {
       setIsSending(false);
+      closeModal();
     }
   };
 
@@ -67,7 +104,13 @@ export default function Paid() {
               Give us a hundred bucks, and we’ll send you an email faster than a
               hyperactive squirrel on caffeine! 🐿️
             </p>
-            <form onSubmit={sendEmail} aria-label="Rs 100 Support Form">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                openModal();
+              }}
+              aria-label="Rs 100 Support Form"
+            >
               <textarea
                 className="w-full p-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white"
                 rows="4"
@@ -148,6 +191,56 @@ export default function Paid() {
           </section>
         </div>
       </main>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-gray-900 p-8 rounded-lg shadow-lg max-w-xs w-full space-y-5">
+            <h2 className="text-2xl font-semibold text-gray-200 text-center">
+              Just a little more info...
+            </h2>
+            <p className="text-gray-400 text-sm text-center leading-relaxed">
+              Care to drop your name and number? I promise, it’s not just for a
+              flirty text later... but that might happen too. 😉 It’s a must,
+              though!
+            </p>
+
+            <input
+              type="text"
+              className="w-full p-3 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              className="w-full p-3 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white"
+              placeholder="Your Number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              required
+            />
+            {numberError && (
+              <p className="text-red-500 text-sm">{numberError}</p>
+            )}
+
+            <button
+              onClick={sendEmail}
+              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-500 transition-all"
+            >
+              {isSending ? "Sending..." : "Send Info"}
+            </button>
+            <button
+              onClick={closeModal}
+              className="w-full bg-gray-700 text-white py-2.5 rounded-lg hover:bg-gray-600 transition-all mt-3"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );
