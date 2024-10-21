@@ -7,108 +7,147 @@ import Footer from "../components/footer";
 
 export default function Paid() {
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
   const handleTextareaFocus = () => {
     console.log("Textarea focused");
   };
 
-  const sendEmail = (e) => {
-    e.preventDefault(); // Prevent default form submission
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setIsSending(true);
 
     const templateParams = {
-      message, // The message from the textarea
-      to_email: "work.brajbhujel@gmail.com", // Your email
+      message,
+      to_email: "work.brajbhujel@gmail.com",
     };
 
-    emailjs
-      .send(
+    try {
+      const response = await emailjs.send(
         "service_xuf4wa6",
         "template_9e4dpy4",
         templateParams,
         "v_itJHKWuvJAQCcsS"
-      )
-      .then((response) => {
-        console.log("Email sent successfully:", response);
-        setMessage(""); // Clear the textarea after sending
-      })
-      .catch((err) => {
-        console.error("Error sending email:", err);
-      });
+      );
+      console.log("Email sent successfully:", response);
+      setStatus("Your message flew through the internet tubes! 📨");
+      setMessage("");
+    } catch (err) {
+      console.error("Error sending email:", err);
+      setStatus(
+        "Oops, something went wrong! Did the email elves take a break?"
+      );
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
     <>
       <Header />
-      <div className="min-h-screen flex flex-col items-center justify-center bg-background-color p-5 pt-20">
-        <h1 className="text-5xl font-semibold text-center gradient-text text-white mb-8">
+      <main className="min-h-screen flex flex-col items-center justify-center bg-black p-5 pt-20">
+        <h1 className="text-5xl font-semibold text-center text-white mb-8">
           Choose Your Support
         </h1>
 
         <div className="flex flex-wrap justify-center gap-6">
           {/* Rs 100 Support */}
-          <div className="bg-black border border-gray-600 shadow-[0_4px_30px_rgba(255,255,255,0.1)] rounded-lg p-6 w-full max-w-xs flex flex-col">
-            <h2 className="text-xl font-semibold mb-4 text-gray-200">
+          <section
+            aria-labelledby="rs100-support-title"
+            className="bg-gray-900 border border-gray-700 shadow-[0_4px_30px_rgba(0,0,0,0.8)] rounded-lg p-6 w-full max-w-xs flex flex-col"
+          >
+            <h2
+              id="rs100-support-title"
+              className="text-xl font-semibold mb-4 text-gray-200"
+            >
               Rs 100 Support
             </h2>
             <p className="mb-4 text-gray-400">
-              Write your heartfelt message, and we’ll send you an email faster
-              than a cat on a hot tin roof!
+              Give us a hundred bucks, and we’ll send you an email faster than a
+              hyperactive squirrel on caffeine! 🐿️
             </p>
-            <form onSubmit={sendEmail}>
+            <form onSubmit={sendEmail} aria-label="Rs 100 Support Form">
               <textarea
                 className="w-full p-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white"
                 rows="4"
+                aria-label="Type your message here"
                 placeholder="Type your message here..."
                 value={message}
                 onFocus={handleTextareaFocus}
                 onChange={(e) => setMessage(e.target.value)}
+                required
               ></textarea>
               <button
                 type="submit"
                 className="mt-4 w-full bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600"
+                disabled={isSending}
               >
-                Send Message
+                {isSending ? "Launching into cyberspace..." : "Send Message"}
               </button>
             </form>
-          </div>
+            {status && (
+              <p
+                className={`mt-2 ${
+                  status.includes("Oops") ? "text-red-500" : "text-green-500"
+                }`}
+              >
+                {status}
+              </p>
+            )}
+          </section>
 
           {/* Pro Support */}
-          <div className="bg-black border border-gray-600 shadow-[0_4px_30px_rgba(255,255,255,0.1)] rounded-lg p-6 w-full max-w-xs flex flex-col">
-            <h2 className="text-xl font-semibold mb-4 text-gray-200">
+          <section
+            aria-labelledby="pro-support-title"
+            className="bg-gray-900 border border-gray-700 shadow-[0_4px_30px_rgba(0,0,0,0.8)] rounded-lg p-6 w-full max-w-xs flex flex-col"
+          >
+            <h2
+              id="pro-support-title"
+              className="text-xl font-semibold mb-4 text-gray-200"
+            >
               Pro Support
             </h2>
             <p className="mb-4 text-gray-400">
-              Need immediate help? Call us for Rs 500—because who needs a
-              therapist when you have us?
+              For Rs 500, call us and we'll give you life advice that'll make
+              you think, "Why didn’t I just Google that?" 🤔
             </p>
             <a
               href="tel:9820362353"
               className="mt-4 w-full bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 text-center"
+              aria-label="Call Us for Pro Support"
             >
               Call Us
             </a>
-          </div>
+          </section>
 
           {/* Premium Support */}
-          <div className="bg-black border border-gray-600 shadow-[0_4px_30px_rgba(255,255,255,0.1)] rounded-lg p-6 w-full max-w-xs flex flex-col">
-            <h2 className="text-xl font-semibold mb-4 text-gray-200">
+          <section
+            aria-labelledby="premium-support-title"
+            className="bg-gray-900 border border-gray-700 shadow-[0_4px_30px_rgba(0,0,0,0.8)] rounded-lg p-6 w-full max-w-xs flex flex-col"
+          >
+            <h2
+              id="premium-support-title"
+              className="text-xl font-semibold mb-4 text-gray-200"
+            >
               Premium Support
             </h2>
             <p className="mb-4 text-gray-400">
-              For Rs 2000, we’ll cry with you—because sometimes, you just need a
-              good sob session!
+              For Rs 2000, we'll provide emotional support so strong, you might
+              cry tears of joy (or confusion) 😢💸
             </p>
             <a
               href="https://instagram.com/rajbhujelll"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 w-full bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 text-center"
+              aria-label="Get Premium Support via Instagram"
             >
               Get Premium Support
             </a>
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   );

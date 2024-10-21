@@ -18,7 +18,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(to right, #ffffff, #1e3a8a); /* White to Blue */
+  background: linear-gradient(to right, #ffffff, #1e3a8a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
