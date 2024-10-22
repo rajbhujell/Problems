@@ -4,49 +4,68 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--background-color);
+  background: var(--background-color);
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .main {
   padding: 0 10px;
-  text-align: center; /* Center text */
+  text-align: center;
 }
 
 .title {
-  font-size: 2.5rem; /* Adjust as needed */
+  font-size: 3rem;
   color: var(--text-color);
-  margin-bottom: 20px; /* Space below title */
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .description {
-  font-size: 1.25rem; /* Adjust as needed */
+  font-size: 1.5rem;
   color: var(--text-color);
-  margin-bottom: 30px; /* Space below description */
+  margin-bottom: 30px;
 }
 
 .buttonBox {
   display: flex;
   justify-content: center;
-  gap: 20px; /* Space between buttons */
-  flex-wrap: wrap; /* Responsive layout */
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .button {
   display: flex;
   align-items: center;
   padding: 15px 30px;
+  background: var(--accent-color);
   border: 2px solid var(--primary-color);
   border-radius: 25px;
-  font-size: 1.2rem; /* Adjust as needed */
+  font-size: 1.2rem;
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
-  background-color: var(--primary-color);
-  color: rgb(221, 208, 208);
+  background-color: var(--yellowColor);
+  color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .icon {
-  margin-right: 10px; /* Space between icon and text */
+  margin-right: 10px;
+  font-size: 1.5rem;
+  color: var(--blueColor); /* Blue accent color for icons */
 }

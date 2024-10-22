@@ -11,7 +11,6 @@ export default function Home() {
       {/* <ProtectedRoute> */}
       <Header />
       <div className={styles.container}>
-        {/* Main Section */}
         <main className={styles.main}>
           <h1 className={styles.title}>Welcome to the Support Circus! 🎪</h1>
           <p className={styles.description}>
@@ -29,6 +28,7 @@ export default function Home() {
           </div>
         </main>
       </div>
+
       <Footer />
       {/* </ProtectedRoute> */}
     </>
