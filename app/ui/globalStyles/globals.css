@@ -17,12 +17,6 @@
   }
 }
 
-.gradient-text {
-  background: linear-gradient(to right, #ffffff, #1e3a8a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -37,11 +31,17 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .gradient-text {
+    background: linear-gradient(to right, #ffffff, #1e3a8a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 :root {
   --primary-color: #3b3a3a;
-  --secondary-color: #d9ff00;
+  --secondary-color: #e9ebe1;
   --accent-color: #575756;
   --text-color: #e7e7ee;
   --background-color: #0c0c0c;

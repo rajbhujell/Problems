@@ -1,12 +1,11 @@
-/* header.module.css */
-
 .header {
-  background-color: var(--background-color);
-  padding: 10px 20px;
+  background-color: black;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .container {
@@ -15,34 +14,179 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  align-items: center;
 }
 
 .logo a {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: var(--text-color);
+  color: white;
   text-decoration: none;
 }
 
-.login a {
-  font-size: 18px;
-  border: 1px solid var(--text-color);
-  padding: 5px 15px;
-  border-radius: 20px;
-  color: var(--text-color);
+.nav {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100%;
+  width: 300px;
+  background-color: black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.5s ease-in-out;
+  box-shadow: -4px 0 5px -2px rgba(0, 0, 0, 0.5);
+}
+
+.nav.open {
+  right: 0;
+}
+
+.navHeader {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.closeIcon {
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.navLink {
+  color: white;
   text-decoration: none;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: gray;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  padding: 5px 10px;
+  background-color: black;
+  margin-right: 20px;
+}
+
+.searchBoxMobile {
+  display: none;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  padding: 10px;
+  background-color: black;
+  margin: 20px 0;
+}
+
+.searchInput {
+  border: none;
+  background-color: black;
+  color: white;
+  outline: none;
+  border-radius: 8px;
+  flex-grow: 1;
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+.searchIcon {
+  color: white;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.iconsMobile {
+  display: none;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.icon {
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: gray;
+}
+
+.userText {
+  color: white;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.hide {
+  display: none;
+}
+
+.burger {
+  display: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
-  .logo a,
-  .login a {
-    font-size: 20px;
+  .burger {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .searchBox {
+    display: none;
+  }
+
+  .searchBoxMobile {
+    display: flex;
+  }
+
+  .icons {
+    display: none;
+  }
+
+  .iconsMobile {
+    display: flex;
+  }
+
+  .navLink {
+    margin: 15px 0;
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .logo a,
-  .login a {
-    font-size: 18px;
+  .logo a {
+    font-size: 1.5rem;
+  }
+
+  .navLink {
+    font-size: 1rem;
   }
 }
